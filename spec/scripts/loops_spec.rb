@@ -4,8 +4,8 @@ describe "loops_fizz_buzz.rb" do
     # Un-require loops_fizz_buzz.rb
     loops_fizz_buzz = $".select{|r| r.include? 'loops_fizz_buzz.rb'}
     $".delete(loops_fizz_buzz.first)
-    response = File.read("spec/support/loops_fizz_buzz.txt")
-    expect { require_relative("../../loops_fizz_buzz") }.to output(response).to_stdout
+    response = File.read("spec/support/fizz_buzz.txt")
+    expect { require_relative("../../loops_fizz_buzz") }.to output(Regexp.new(response)).to_stdout
   end
 end
 
