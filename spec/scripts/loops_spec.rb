@@ -55,21 +55,6 @@ describe "loops_letter_count.rb" do
   end
 end
 
-describe "loops_stop.rb" do
-  
-  it "should count 1 with the input of 'a'", points: 1 do
-    # Un-require loops_letter_count.rb
-    loops_letter_count = $".select{|r| r.include? 'loops_letter_count.rb'}
-    $".delete(loops_letter_count.first)
-    
-    allow_any_instance_of(Object).to receive(:gets).and_return("a")
-    
-    response = /1\n.*a is 1 letters long/
-
-    expect { require_relative("../../loops_letter_count") }.to output(response).to_stdout
-  end
-end
-
 describe "loops_multiples.rb" do
   
   it "should print the correct multiples from 1 to 10 with the input of '2'", points: 1 do
