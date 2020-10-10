@@ -91,8 +91,6 @@ loops_letter_count.rb should count 1 to 15 with the input of 'fantasmagorical'
 
 loops_letter_count.rb should count 1 with the input of 'a' 
 
-loops_stop.rb should count 1 with the input of 'a' 
-
 loops_multiples.rb should print the correct multiples from 1 to 10 with the input of '2' 
 
 loops_multiples.rb should print the correct multiples from 1 to 10 with the input of '3' 
