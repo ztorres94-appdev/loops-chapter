@@ -29,7 +29,7 @@ describe "loops_letter_count.rb" do
     output = with_captured_stdout { require_relative('../../loops_letter_count')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '1\n2\n3\n4\n5\n6\nbanana is 6 letters long', but was #{output}."
+      "Expected output to be '1\\n2\\n3\\n4\\n5\\n6\\nbanana is 6 letters long', but was #{output}."
 
   end
 end
@@ -89,7 +89,7 @@ describe "loops_multiples.rb" do
     output = with_captured_stdout { require_relative('../../loops_multiples')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '2\n4\n6\n8\n10\n12\n14\n16\n18\n20', but was #{output}."
+      "Expected output to be '2\\n4\\n6\\n8\\n10\\n12\\n14\\n16\\n18\\n20', but was #{output}."
 
   end
 end
@@ -109,7 +109,7 @@ describe "loops_multiples.rb" do
     output = with_captured_stdout { require_relative('../../loops_multiples')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '3\n6\n9\n12\n15\n18\n21\n24\n27\n30', but was #{output}."
+      "Expected output to be '3\\n6\\n9\\n12\\n15\\n18\\n21\\n24\\n27\\n30', but was #{output}."
 
   end
 end
@@ -129,7 +129,7 @@ describe "loops_multiples.rb" do
     output = with_captured_stdout { require_relative('../../loops_multiples')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '0\n0\n0\n0\n0\n0\n0\n0\n0\n0', but was #{output}."
+      "Expected output to be '0\\n0\\n0\\n0\\n0\\n0\\n0\\n0\\n0\\n0', but was #{output}."
 
   end
 end
