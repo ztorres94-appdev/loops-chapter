@@ -5,10 +5,14 @@ describe "loops_fizz_buzz.rb" do
     loops_fizz_buzz = $".select{|r| r.include? 'loops_fizz_buzz.rb'}
     $".delete(loops_fizz_buzz.first)
     response = File.read("spec/support/fizz_buzz.txt")
-    expect { require_relative("../../loops_fizz_buzz") }.to output(Regexp.new(response)).to_stdout
+    # expect { require_relative("../../loops_fizz_buzz") }.to output(Regexp.new(response)).to_stdout
+    output = with_captured_stdout { require_relative('../../loops_fizz_buzz')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(Regexp.new(response))).to be(true),
+      "Expected output to be '#{response}', but was #{output}."
+
   end
 end
-
 
 describe "loops_letter_count.rb" do
   
@@ -19,9 +23,14 @@ describe "loops_letter_count.rb" do
     
     allow_any_instance_of(Object).to receive(:gets).and_return("banana")
     
-    response = /1\n2\n3\n4\n5\n6\n.*banana is 6 letters long/
+    response = /1\n2\n3\n4\n5\n6\n.*banana is 6 letters long/i
 
-    expect { require_relative("../../loops_letter_count") }.to output(response).to_stdout
+    # expect { require_relative("../../loops_letter_count") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../loops_letter_count')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '1\n2\n3\n4\n5\n6\nbanana is 6 letters long', but was #{output}."
+
   end
 end
 
@@ -34,9 +43,14 @@ describe "loops_letter_count.rb" do
     
     allow_any_instance_of(Object).to receive(:gets).and_return("fantasmagorical")
     
-    response = /1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n.*fantasmagorical is 15 letters long/
+    response = /1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n.*fantasmagorical is 15 letters long/i
 
-    expect { require_relative("../../loops_letter_count") }.to output(response).to_stdout
+    # expect { require_relative("../../loops_letter_count") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../loops_letter_count')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\nfantasmagorical is 15 letters long', but was #{output}."
+
   end
 end
 
@@ -49,9 +63,14 @@ describe "loops_letter_count.rb" do
     
     allow_any_instance_of(Object).to receive(:gets).and_return("a")
     
-    response = /1\n.*a is 1 letters long/
+    response = /1\n.*a is 1 letters long/i
 
-    expect { require_relative("../../loops_letter_count") }.to output(response).to_stdout
+    # expect { require_relative("../../loops_letter_count") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../loops_letter_count')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '1\na is 1 letters long', but was #{output}."
+
   end
 end
 
@@ -64,9 +83,14 @@ describe "loops_multiples.rb" do
     
     allow_any_instance_of(Object).to receive(:gets).and_return("2")
     
-    response = /2\n4\n6\n8\n10\n12\n14\n16\n18\n20/
+    response = /2\n4\n6\n8\n10\n12\n14\n16\n18\n20/i
 
-    expect { require_relative("../../loops_multiples") }.to output(response).to_stdout
+    # expect { require_relative("../../loops_multiples") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../loops_multiples')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '2\n4\n6\n8\n10\n12\n14\n16\n18\n20', but was #{output}."
+
   end
 end
 
@@ -79,9 +103,14 @@ describe "loops_multiples.rb" do
     
     allow_any_instance_of(Object).to receive(:gets).and_return("3")
     
-    response = /3\n6\n9\n12\n15\n18\n21\n24\n27\n30/
+    response = /3\n6\n9\n12\n15\n18\n21\n24\n27\n30/i
 
-    expect { require_relative("../../loops_multiples") }.to output(response).to_stdout
+    # expect { require_relative("../../loops_multiples") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../loops_multiples')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '3\n6\n9\n12\n15\n18\n21\n24\n27\n30', but was #{output}."
+
   end
 end
 
@@ -94,8 +123,22 @@ describe "loops_multiples.rb" do
     
     allow_any_instance_of(Object).to receive(:gets).and_return("0")
     
-    response = /0\n0\n0\n0\n0\n0\n0\n0\n0\n0/
+    response = /0\n0\n0\n0\n0\n0\n0\n0\n0\n0/i
 
-    expect { require_relative("../../loops_multiples") }.to output(response).to_stdout
+    # expect { require_relative("../../loops_multiples") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../loops_multiples')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '0\n0\n0\n0\n0\n0\n0\n0\n0\n0', but was #{output}."
+
   end
+end
+
+def with_captured_stdout
+  original_stdout = $stdout  # capture previous value of $stdout
+  $stdout = StringIO.new     # assign a string buffer to $stdout
+  yield                      # perform the body of the user code
+  $stdout.string             # return the contents of the string buffer
+ensure
+  $stdout = original_stdout  # restore $stdout to its previous value
 end
