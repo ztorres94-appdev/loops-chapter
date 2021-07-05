@@ -17,5 +17,15 @@
 # 18
 # 20
 
+n = 1
+
 p "Enter a number:"
 
+number = gets.chomp
+
+
+10.times do 
+    p number.to_i*n
+
+    n = n+1 
+end
